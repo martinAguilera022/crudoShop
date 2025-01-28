@@ -1,0 +1,63 @@
+/* Estilos para las tarjetas de productos */
+.productos-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.link {
+    text-decoration: none; /* Elimina el subrayado */
+   
+  }
+  
+  .link:hover {
+    text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
+  }
+article {
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: "Roboto", sans-serif;
+}
+
+article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+article img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+article h5 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 15px 0;
+    color: #333;
+}
+
+article button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 0 15px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+article button:hover {
+    background-color: #ffffff;
+    color: black;
+}

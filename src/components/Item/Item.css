@@ -1,0 +1,78 @@
+.ItemDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content:space-around;
+    padding: 10px;
+    max-width: 300px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    
+
+    
+}
+.precio-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 15px;
+    
+}
+.ItemDetailContainer img {
+    max-width: 100%;
+    
+    height: max-content;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    
+}
+.ver-button{
+    color: #e1e1e1;
+    background-color: #000000;
+    padding:10px 20px;
+    border-radius: 20px;
+}
+.ItemDetailContainer h2 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ItemDetailContainer p {
+    
+    margin: 5px 0;
+}
+
+.ItemDetailContainer p:last-child {
+    font-weight: bold;
+    color: #000;
+}
+
+.ItemDetailContainer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ebebeb;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ItemDetailContainer button:hover {
+    background-color: #0056b3;
+}
+.category{
+    border: 1px solid #16161644;
+    background-color: #e0e0e0a9;
+    border-radius: 20px;
+    color: #565656;
+    padding: 10px;
+    font-size: 12px;
+    align-self: flex-start;
+}

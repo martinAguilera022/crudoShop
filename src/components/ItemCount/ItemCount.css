@@ -1,0 +1,56 @@
+/* ItemCount.css */
+.ItemCount {
+    display: flex;
+    
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+.ItemCount__button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ItemCount__button:hover {
+    background-color: #0056b3;
+}
+
+.ItemCount__number {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.ItemCount__addToCart {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.ItemCount__addToCart:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.ItemCount__addToCart:hover:not(:disabled) {
+    background-color: #218838;
+}

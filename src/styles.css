@@ -8,6 +8,7 @@
 }
 body{
     font-family: "poppins";
+    background-color: rgb(124, 124, 124);
 }
 header {
     background-color: #ffffff; ;
@@ -26,6 +27,16 @@ nav{
     justify-content: space-between;
     font-size: 20px;
     font-weight: 200;
+    background-color: #ffffff;
+    padding: 20px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 200;
+    background-color: #ffffff;
+    padding: 20px;
 }
 .titulos{
     font-family: 'Roboto', sans-serif;
@@ -61,3 +72,14 @@ nav ul li a{
 
 
 }
+
+
+.link {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Usa el color del texto del contenedor */
+  }
+  
+  .link:hover {
+    text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
+  }
+  
