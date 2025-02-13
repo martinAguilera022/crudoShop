@@ -82,4 +82,7 @@ nav ul li a{
   .link:hover {
     text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
   }
-  
+  .cerrar-sesion{
+    background-color: #000000;
+    color: #ffffff;
+  }

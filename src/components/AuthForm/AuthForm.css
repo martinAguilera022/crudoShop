@@ -1,0 +1,17 @@
+
+.google-signin{
+    background-color: white;
+}
+.container{
+    height: 100vh;
+    justify-content: center;
+}
+.input-field{
+    margin: 10px;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

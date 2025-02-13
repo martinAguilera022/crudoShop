@@ -1,0 +1,87 @@
+/* Estilo general del contenedor del carrito */
+.cart-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f2f1f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo cuando el carrito está vacío */
+.cart-empty {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.cart-empty h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cart-empty button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-empty button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para los ítems del carrito */
+.cart-items {
+    margin-bottom: 20px;
+}
+
+/* Estilo del resumen total */
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.cart-summary h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+/* Botones de acción */
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cart-actions button {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-actions button:hover {
+    background-color: #0056b3;
+}
+
+/* Botón de vaciar carrito */
+.clear-cart-btn {
+    background-color: #e53935;
+}
+
+.clear-cart-btn:hover {
+    background-color: #c62828;
+}
