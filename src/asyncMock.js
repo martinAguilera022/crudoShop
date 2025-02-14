@@ -24,18 +24,16 @@ export const getProducts = async () => {
 export const getProductsById = async (productId) => {
 	try {
 		const productos = await getProducts(); // Obtener todos los productos
-		console.log("Productos disponibles:", productos); // Log para verificar los productos
-		console.log("Buscando producto con ID:", productId);
+		
 
 		// Asegurarse de que ambos valores sean del mismo tipo
 		const productoEncontrado = productos.find(
 			(producto) => producto.id === productId
 		);
 
-		console.log("Producto encontrado:", productoEncontrado || "No encontrado");
 		return productoEncontrado || null;
 	} catch (error) {
-		console.error("Error al obtener el producto por ID:", error.message);
+		
 		return null;
 	}
 };
