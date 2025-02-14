@@ -12,6 +12,7 @@ import {
 	writeBatch,
 	where,
 } from "firebase/firestore";
+import Swal from "sweetalert2";
 import "./Checkout.css";
 const Checkout = () => {
 	const [loading, setLoading] = useState(false);
@@ -32,10 +33,12 @@ const Checkout = () => {
 				total: total(),
 				date: Timestamp.fromDate(new Date()),
 			};
+
 			const batch = writeBatch(db);
 			const outOfStock = [];
 			const ids = cart.map((prod) => String(prod.id));
-			const productsRef = collection(db, "products");
+
+			const productsRef = collection(db, "items");
 			const productsAddedFromFirestore = await getDocs(
 				query(productsRef, where(documentId(), "in", ids))
 			);
@@ -50,22 +53,41 @@ const Checkout = () => {
 
 				if (stockDb >= prodQuantity) {
 					batch.update(doc.ref, { stock: stockDb - prodQuantity });
+					console.log(
+						"Stock actualizado para",
+						doc.id,
+						":",
+						stockDb - prodQuantity
+					); // Verificar la actualización
 				} else {
 					outOfStock.push({ id: doc.id, ...dataDoc });
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text:
+							"El producto " + dataDoc.title + " se encuentra fuera de stock",
+					});
+					console.log("Producto sin stock:", doc.id); // Verificar productos sin stock
 				}
 			});
 
 			if (outOfStock.length === 0) {
 				await batch.commit();
+
 				const orderRef = collection(db, "orders");
 				const orderAdded = await addDoc(orderRef, objOrder);
+
 				setOrderId(orderAdded.id);
 				clearCart();
 			} else {
-				console.error("Hay productos fuera de stock");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Algunos productos están fuera de stock",
+				});
 			}
 		} catch (error) {
-			console.log(error);
+			console.error("Error en createOrder:", error); // Verificar errores
 		} finally {
 			setLoading(false);
 		}

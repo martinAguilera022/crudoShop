@@ -86,7 +86,7 @@ const NavBar = () => {
 			<div className="cart-widget">
 				<CartWidget />
 				{!auth.currentUser && (
-					<Link to="/auth" className="link inicio-sesion-movil">
+					<Link to="/auth" className="inicio-sesion-movil">
 						<FaUser size={24} color="black" />
 					</Link>
 				)}
