@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    font-family: "poppins";
+
+body {
+    font-family: "Poppins", sans-serif;
     background-color: rgb(124, 124, 124);
 }
+
 header {
-    background-color: #ffffff; ;
+    background-color: #ffffff;
     color: #000000;
     position: sticky;
     top: 0;
@@ -19,10 +20,9 @@ header {
     z-index: 1000;
     box-shadow: 0 10px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
-
-
 }
-nav{
+
+nav {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -30,7 +30,8 @@ nav{
     background-color: #ffffff;
     padding: 20px;
 }
-.navbar{
+
+.navbar {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -38,17 +39,20 @@ nav{
     background-color: #ffffff;
     padding: 20px;
 }
-.titulos{
+
+.titulos {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
-.logo{
+
+.logo {
     display: flex;
     justify-content: space-between;
     font-weight: 300;
     font-family: 30px;
 }
-nav ul{
+
+nav ul {
     list-style: none;
     display: flex;
     justify-content: space-evenly;
@@ -57,32 +61,141 @@ nav ul{
     background-color: rgb(255, 255, 255);
     margin-bottom: 0;
 }
-nav ul li{
-   border-left: #000000 1px solid;
+
+nav ul li {
+    border-left: #000000 1px solid;
 }
-nav ul li a{
+
+nav ul li a {
     color: #000000;
     text-decoration: none;
     margin-left: 31px;
 }
 
-.cart-widget{
+.cart-widget {
     display: flex;
     align-items: center;
-
-
 }
-
 
 .link {
     text-decoration: none; /* Elimina el subrayado */
     color: inherit; /* Usa el color del texto del contenedor */
-  }
-  
-  .link:hover {
+}
+
+.link:hover {
     text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
-  }
-  .cerrar-sesion{
+}
+
+.cerrar-sesion {
     background-color: #000000;
     color: #ffffff;
-  }
+}
+
+/* Estilos del icono del menú hamburguesa */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.hamburger-menu div {
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    border-radius: 5px;
+}
+.cart-widget{
+    display: flex;
+    gap: 10px;
+}
+.inicio-sesion-movil{
+    display: none;
+}
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    nav {
+        position: relative;
+        padding: 0;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 60px; /* Ajusta según el tamaño de tu header */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        margin-top: 0;
+        padding: 10px 0;
+        border-top: 1px solid #000;
+        transition: height 0.5s ease, opacity 0.5s ease; /* Animar altura y opacidad */
+    }
+
+    nav.active ul {
+        display: flex;
+        border-radius: 20px;
+        padding: 20px;
+        background-color: black;
+        color: white;
+        font-weight: 700;
+        flex-direction: column;
+        height: 32vh;
+        opacity: 1;
+    
+    }
+    
+    .hamburger-menu {
+        display: flex; /* Solo visible en pantallas pequeñas */
+    }
+
+    nav ul li {
+        border-left: none;
+        border-bottom: 1px solid #000;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav ul li a {
+        margin-left: 0;
+    }
+}
+
+/* Para pantallas medianas (tablets y dispositivos de tamaño medio) */
+@media (max-width: 1024px) {
+    nav {
+        font-size: 18px;
+        
+    }
+   
+    .navbar {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        width: 80%;
+    }
+    .inicio-sesion{
+        display: none;
+    }
+    nav ul li {
+        border-left: #000000 1px solid;
+        margin-left: 20px;
+    }
+
+    .cart-widget {
+        justify-content: flex-end;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+}

@@ -36,6 +36,8 @@ function CargarProductos() {
   const [image, setNewItemImage] = useState("");
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [view, setView] = useState("productos"); // "productos" o "ordenes"
+
 
   useEffect(() => {
     checkAdminStatus()
@@ -123,7 +125,14 @@ function CargarProductos() {
     <div className="cargar-productos-container">
       {isAdmin ? (
         <>
-          <div className="form-container">
+          {/* Botón solo en móvil */}
+          <div className="mobile-toggle">
+            <button onClick={() => setView(view === "productos" ? "ordenes" : "productos")}>
+              {view === "productos" ? "Ver Órdenes" : "Cargar Datos"}
+            </button>
+          </div>
+          <div className={`form-container productos ${view === "ordenes" ? "hidden-mobile" : ""}`}>
+
             <h1>Cargar Productos</h1>
             <input placeholder="Nombre" onChange={(e) => setNewItemNombre(e.target.value)} />
             <input placeholder="Precio" type="number" onChange={(e) => setNewItemPrecio(Number(e.target.value))} />
@@ -187,7 +196,8 @@ function CargarProductos() {
             )}
           </div>
 
-          <div className="orders-list">
+          <div className={`orders-list ordenes ${view === "productos" ? "hidden-mobile" : ""}`}>
+
             <h1>Órdenes</h1>
             <div className="order-filters">
               <button onClick={() => getOrdersList()}>Todas</button>

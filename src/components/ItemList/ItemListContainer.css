@@ -8,14 +8,15 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .link {
     text-decoration: none; /* Elimina el subrayado */
-   
-  }
-  
-  .link:hover {
+}
+
+.link:hover {
     text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
-  }
+}
+
 article {
     background-color: #fcfcfc;
     border-radius: 8px;
@@ -30,7 +31,6 @@ article:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 article h5 {
     font-size: 18px;
@@ -56,6 +56,7 @@ article button:hover {
     background-color: #ffffff;
     color: black;
 }
+
 .loading-text {
     font-size: 1.2rem;
     font-weight: bold;
@@ -68,4 +69,56 @@ article button:hover {
     0% { opacity: 0.3; }
     50% { opacity: 1; }
     100% { opacity: 0.3; }
+}
+
+/* Media Queries para diferentes tamaños de pantallas */
+
+/* Para pantallas de tabletas y dispositivos pequeños */
+@media (max-width: 1024px) {
+    .productos-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Menos espacio entre las columnas */
+        gap: 15px;
+    }
+
+    article h5 {
+        font-size: 16px; /* Reducir el tamaño del texto en pantallas más pequeñas */
+    }
+
+    article button {
+        font-size: 12px; 
+        padding: 8px 12px; 
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .productos-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Más columnas para pantallas muy pequeñas */
+        gap: 10px;
+    }
+    .item-detail-container {
+        flex-direction: column;
+    }
+    .item-image {
+        width: 52%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+    article {
+        padding: 15px; /* Menos padding para aprovechar el espacio */
+    }
+
+    article h5 {
+        font-size: 10px; /* Reducir aún más el tamaño del texto */
+    }
+
+    article button {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .loading-text {
+        font-size: 1rem; /* Reducir tamaño del texto de carga en pantallas pequeñas */
+    }
 }

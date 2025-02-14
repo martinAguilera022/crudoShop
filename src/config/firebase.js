@@ -10,7 +10,6 @@ const firebaseConfig = {
 	messagingSenderId: process.env.REACT_APP_messagingSenderId,
 	appId: process.env.REACT_APP_appId,
 };
-console.log("API KEY:", firebaseConfig.apiKey);
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);

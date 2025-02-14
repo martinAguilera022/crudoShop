@@ -1,7 +1,6 @@
 /* ItemCount.css */
 .ItemCount {
     display: flex;
-    
     align-items: center;
     text-align: center;
     gap: 10px;
@@ -53,4 +52,56 @@
 
 .ItemCount__addToCart:hover:not(:disabled) {
     background-color: #218838;
+}
+
+/* Media Queries para hacer el componente responsive */
+
+/* Para pantallas de tabletas */
+@media (max-width: 1024px) {
+    .ItemCount {
+        flex-direction: row;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .ItemCount__number {
+        font-size: 20px;
+    }
+
+    .ItemCount__button {
+        font-size: 18px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .ItemCount__addToCart {
+        width: 180px;
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .ItemCount {
+        
+    }
+
+    .ItemCount__number {
+        font-size: 18px;
+    }
+
+    .ItemCount__button {
+        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        justify-content: center;
+    }
+
+    .ItemCount__addToCart {
+        width: 160px;
+        font-size: 14px;
+        padding: 8px 14px;
+    }
 }
