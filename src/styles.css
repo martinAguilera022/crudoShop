@@ -5,6 +5,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.logOut{
+    background-color: #000;
+}
 
 body {
     font-family: "Poppins", sans-serif;
@@ -169,6 +172,9 @@ nav ul li a {
 
 /* Para pantallas medianas (tablets y dispositivos de tamaño medio) */
 @media (max-width: 1024px) {
+    .inicio-sesion-movil{
+        display: block;
+    }
     nav {
         font-size: 18px;
         
@@ -190,7 +196,7 @@ nav ul li a {
         border-left: #000000 1px solid;
         margin-left: 20px;
     }
-
+   
     .cart-widget {
         justify-content: flex-end;
     }

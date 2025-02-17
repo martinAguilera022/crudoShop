@@ -14,8 +14,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
-console.log("Firebase inicializado:", app);
-// Personaliza el proveedor de Google (opcional)
+
 googleProvider.setCustomParameters({
 	prompt: "select_account",
 });

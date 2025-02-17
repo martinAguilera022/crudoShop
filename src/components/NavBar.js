@@ -92,7 +92,7 @@ const NavBar = () => {
 				)}
 				{auth.currentUser && (
 					<div className="profile">
-						<button onClick={handleLogout}>
+						<button className="logOut" onClick={handleLogout}>
 							<FiLogOut size={24} />
 						</button>
 					</div>
