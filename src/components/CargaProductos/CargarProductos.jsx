@@ -23,11 +23,14 @@ function CargarProductos() {
   const [updatedDescripcion, setUpdatedDescripcion] = useState("");
   const [updatedCategoria, setUpdatedCategoria] = useState("");
   const [updatedImage, setUpdatedImage] = useState("");
+  const [updatedOfferPercentage, setUpdatedOfferPercentage] = useState(0);
+
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [disabledOrders, setDisabledOrders] = useState({});
 
+  const [offerPercentage, setOfferPercentage] = useState(0);
   const [title, setNewItemNombre] = useState("");
   const [price, setNewItemPrecio] = useState(0);
   const [stock, setNewItemStock] = useState(0);
@@ -70,6 +73,7 @@ function CargarProductos() {
     setUpdatedDescripcion(item.description);
     setUpdatedCategoria(item.category);
     setUpdatedImage(item.image);
+    setUpdatedOfferPercentage(item.offerPercentage);
     setIsPopupOpen(true);
   };
 
@@ -84,6 +88,7 @@ function CargarProductos() {
       price: updatedPrecio,
       description: updatedDescripcion,
       category: updatedCategoria,
+      offerPercentage: updatedOfferPercentage,
       image: updatedImage,
       stock: updatedStock,
     })
@@ -109,7 +114,7 @@ function CargarProductos() {
 
   const handleSubmitItem = () => {
     if (title && price && stock && description && category && image) {
-      onSubmitItem({ title, price, stock, description, category, image })
+      onSubmitItem({ title, price, stock, description, category, image, offerPercentage })
         .then(() => {
           getItemsList(); // Refrescamos la lista de productos
         })
@@ -188,6 +193,10 @@ function CargarProductos() {
                     <option value="Zapatilla">Zapatilla</option>
                     <option value="Articulo">Articulo</option>
                   </select>
+                  <label for="oferta">Oferta  
+                    <input type="number" placeholder="Porcentaje Descuento" value={updatedOfferPercentage} onChange={(e) => setUpdatedOfferPercentage(Number(e.target.value))} />
+                  </label>
+
                   <input placeholder="Imagen URL" value={updatedImage} onChange={(e) => setUpdatedImage(e.target.value)} />
                   <button onClick={handleUpdateItem}>Guardar</button>
                   <button onClick={closePopup}>Cerrar</button>

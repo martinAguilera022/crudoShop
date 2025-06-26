@@ -82,6 +82,7 @@ export const useFirebase = () => {
 		description,
 		category,
 		image,
+		offerPercentage = 0,
 	}) => {
 		await addDoc(itemsCollectionRef, {
 			title,
@@ -90,6 +91,7 @@ export const useFirebase = () => {
 			description,
 			category,
 			image,
+			offerPercentage,
 		});
 
 		getItemsList();
@@ -140,7 +142,7 @@ export const useFirebase = () => {
 	/** Actualizar producto */
 	const updatedItem = async (
 		id,
-		{ title, price, stock, description, category, image }
+		{ title, price, stock, description, category, image, offerPercentage }
 	) => {
 		try {
 			const itemDoc = doc(db, "items", id);
@@ -151,6 +153,7 @@ export const useFirebase = () => {
 				description,
 				category,
 				image,
+				offerPercentage,
 			});
 
 			// Mostrar SweetAlert de éxito

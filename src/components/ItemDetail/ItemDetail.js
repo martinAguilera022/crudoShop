@@ -12,6 +12,7 @@ const ItemDetail = ({
 	category,
 	stock,
 	image,
+	offerPercentage,
 }) => {
 	const [quantityAdded, setQuantityAdded] = useState(0);
 	const { addItem } = useContext(CartContext);
@@ -29,6 +30,20 @@ const ItemDetail = ({
 		style: "currency",
 		currency: "ARS",
 	});
+	const cleanPrice = Number(String(price).replace(/[^0-9.-]+/g, ""));
+	const discount = Number(offerPercentage);
+	const discountedPrice = cleanPrice * (1 - discount / 100);
+
+	const formattedOriginalPrice = cleanPrice.toLocaleString("es-AR", {
+		style: "currency",
+		currency: "ARS",
+	});
+
+	const formattedDiscountedPrice = discountedPrice.toLocaleString("es-AR", {
+		style: "currency",
+		currency: "ARS",
+	});
+
 	return (
 		<div className="item-detail-container">
 			<div className="image-container">
@@ -36,13 +51,22 @@ const ItemDetail = ({
 			</div>
 
 			<div className="detail-content">
+				<p className="offer">{offerPercentage}%</p>
 				<h2 className="item-title">{title}</h2>
 				<p className="item-category">{category}</p>
 				<p className="item-description">{description}</p>
 
 				<div className="price-section">
-					<p className="item-price">ARS {formattedPrice}</p>
+					{discount > 0 ? (
+						<p className="item-price">
+							<span className="price-old">{formattedOriginalPrice}</span>{" "}
+							<span className="price-new">{formattedDiscountedPrice}</span>
+						</p>
+					) : (
+						<p className="item-price">{formattedOriginalPrice}</p>
+					)}
 				</div>
+
 				<div className="stock-section">
 					<p className="item-stock">En Stock: {stock}</p>
 				</div>
@@ -51,7 +75,6 @@ const ItemDetail = ({
 						Ir al carrito
 					</Link>
 				) : (
-					
 					<ItemCount stock={stock} initial={1} onAdd={handleOnAdd} />
 				)}
 

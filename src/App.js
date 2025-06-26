@@ -19,6 +19,7 @@ function App() {
 			<CartProvider>
 				<Routes>
 					<Route path="/" element={<Layout />}>
+						
 						<Route index element={<ItemListContainer />} />
 						<Route path="/auth" element={<AuthForm />} />
 

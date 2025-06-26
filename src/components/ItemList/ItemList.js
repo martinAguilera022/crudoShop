@@ -18,6 +18,7 @@ const ItemList = ({ productos }) => {
 								image={producto.image}
 								title={producto.title}
 								price={formattedPrice}
+								offerPercentage={producto.offerPercentage}
 								category={producto.category}
 								description={producto.description}
 							/>
