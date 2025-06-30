@@ -21,8 +21,10 @@ const ItemDetail = ({
 		const item = {
 			id,
 			title,
-			price,
 			image,
+			price: discount > 0 ? discountedPrice : price, // ← Usamos el precio con descuento si existe
+			originalPrice: price, // ← Guardamos también el precio original por si lo necesitás en el carrito
+			offerPercentage: discount, // ← También podés pasar el descuento si querés mostrarlo
 		};
 		addItem(item, quantity);
 	};
@@ -51,7 +53,7 @@ const ItemDetail = ({
 			</div>
 
 			<div className="detail-content">
-				<p className="offer">{offerPercentage}%</p>
+				<p className="offer">-{offerPercentage}%</p>
 				<h2 className="item-title">{title}</h2>
 				<p className="item-category">{category}</p>
 				<p className="item-description">{description}</p>

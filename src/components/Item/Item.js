@@ -15,7 +15,7 @@ const Item = ({
 	const discountedPrice = cleanPrice * (1 - discount / 100);
 	return (
 		<div className="ItemDetailContainer">
-			{offerPercentage > 0 && <p className="offer">{offerPercentage}%</p>}
+			{offerPercentage > 0 && <p className="offer">-{offerPercentage}%</p>}
 
 			<img src={image} alt={description} />
 
@@ -25,7 +25,8 @@ const Item = ({
 			<div className="precio-button">
 				{discount > 0 ? (
 					<p>
-						<span className="price-old">ARS {cleanPrice.toFixed(3)}</span>{" "}<br />
+						<span className="price-old">ARS {cleanPrice.toFixed(3)}</span>{" "}
+						<br />
 						<span className="price-new">ARS {discountedPrice.toFixed(3)}</span>
 					</p>
 				) : (
