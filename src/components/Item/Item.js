@@ -15,9 +15,13 @@ const Item = ({
 	const discountedPrice = cleanPrice * (1 - discount / 100);
 	return (
 		<div className="ItemDetailContainer">
-			{offerPercentage > 0 && <p className="offer">-{offerPercentage}%</p>}
-
-			<img src={image} alt={description} />
+			<div className="image-wrapper">
+				<img src={image} alt={description} />
+				{Number(stock) === 0 && <p className="sin-stock-overlay">SIN STOCK</p>}
+				{offerPercentage > 0 && (
+					<p className="offer-overlay">-{offerPercentage}%</p>
+				)}
+			</div>
 
 			<h2>{title}</h2>
 			<p className="category">{category}</p>

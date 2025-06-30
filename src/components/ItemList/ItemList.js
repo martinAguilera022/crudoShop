@@ -21,6 +21,7 @@ const ItemList = ({ productos }) => {
 								offerPercentage={producto.offerPercentage}
 								category={producto.category}
 								description={producto.description}
+								stock={producto.stock}
 							/>
 						);
 					})}

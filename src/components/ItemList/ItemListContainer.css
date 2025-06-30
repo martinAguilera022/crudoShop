@@ -1,124 +1,136 @@
 /* Estilos para las tarjetas de productos */
 .productos-container {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+	padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(217px, 1fr));
+	gap: 20px;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 .link {
-    text-decoration: none; /* Elimina el subrayado */
+	text-decoration: none; /* Elimina el subrayado */
 }
 
 .link:hover {
-    text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
+	text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
 }
 
 article {
-    background-color: #fcfcfc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    font-family: "Roboto", sans-serif;
+	background-color: #fcfcfc;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	text-align: center;
+	transition: transform 0.3s, box-shadow 0.3s;
+	font-family: "Roboto", sans-serif;
 }
 
 article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 article h5 {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 15px 0;
-    color: #333;
+	font-size: 18px;
+	font-weight: 500;
+	margin: 15px 0;
+	color: #333;
 }
 
 article button {
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    margin: 10px 0 15px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 14px;
-    font-weight: 600;
+	background-color: #000000;
+	color: #ffffff;
+	border: none;
+	padding: 10px 15px;
+	margin: 10px 0 15px 0;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	font-size: 14px;
+	font-weight: 600;
 }
 
 article button:hover {
-    background-color: #ffffff;
-    color: black;
+	background-color: #ffffff;
+	color: black;
 }
 
 .loading-text {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    animation: fadeInOut 1.5s infinite;
-    color: #ffffff;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-align: center;
+	animation: fadeInOut 1.5s infinite;
+	color: #ffffff;
 }
 
 @keyframes fadeInOut {
-    0% { opacity: 0.3; }
-    50% { opacity: 1; }
-    100% { opacity: 0.3; }
+	0% {
+		opacity: 0.3;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.3;
+	}
 }
 
 /* Media Queries para diferentes tamaños de pantallas */
 
 /* Para pantallas de tabletas y dispositivos pequeños */
 @media (max-width: 1024px) {
-    .productos-container {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Menos espacio entre las columnas */
-        gap: 15px;
-    }
+	.productos-container {
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(180px, 1fr)
+		); /* Menos espacio entre las columnas */
+		gap: 15px;
+	}
 
-    article h5 {
-        font-size: 16px; /* Reducir el tamaño del texto en pantallas más pequeñas */
-    }
+	article h5 {
+		font-size: 16px; /* Reducir el tamaño del texto en pantallas más pequeñas */
+	}
 
-    article button {
-        font-size: 12px; 
-        padding: 8px 12px; 
-    }
+	article button {
+		font-size: 12px;
+		padding: 8px 12px;
+	}
 }
 
 /* Para pantallas pequeñas (móviles) */
 @media (max-width: 600px) {
-    .productos-container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Más columnas para pantallas muy pequeñas */
-        gap: 10px;
-    }
-    .item-detail-container {
-        flex-direction: column;
-    }
-    .item-image {
-        width: 52%;
-        height: auto;
-        border-radius: 8px;
-        object-fit: cover;
-    }
-    article {
-        padding: 15px; /* Menos padding para aprovechar el espacio */
-    }
+	.productos-container {
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(150px, 1fr)
+		); /* Más columnas para pantallas muy pequeñas */
+		gap: 10px;
+	}
+	.item-detail-container {
+		flex-direction: column;
+	}
+	.item-image {
+		width: 52%;
+		height: auto;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+	article {
+		padding: 15px; /* Menos padding para aprovechar el espacio */
+	}
 
-    article h5 {
-        font-size: 10px; /* Reducir aún más el tamaño del texto */
-    }
+	article h5 {
+		font-size: 10px; /* Reducir aún más el tamaño del texto */
+	}
 
-    article button {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
+	article button {
+		font-size: 12px;
+		padding: 8px 10px;
+	}
 
-    .loading-text {
-        font-size: 1rem; /* Reducir tamaño del texto de carga en pantallas pequeñas */
-    }
+	.loading-text {
+		font-size: 1rem; /* Reducir tamaño del texto de carga en pantallas pequeñas */
+	}
 }

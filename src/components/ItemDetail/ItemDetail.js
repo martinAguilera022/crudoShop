@@ -53,7 +53,8 @@ const ItemDetail = ({
 			</div>
 
 			<div className="detail-content">
-				<p className="offer">-{offerPercentage}%</p>
+				{offerPercentage > 0 && <p className="offer">-{offerPercentage}%</p>}
+
 				<h2 className="item-title">{title}</h2>
 				<p className="item-category">{category}</p>
 				<p className="item-description">{description}</p>
@@ -72,7 +73,9 @@ const ItemDetail = ({
 				<div className="stock-section">
 					<p className="item-stock">En Stock: {stock}</p>
 				</div>
-				{quantityAdded > 0 ? (
+				{stock === 0 ? (
+					<p className="sin-stock">SIN STOCK</p>
+				) : quantityAdded > 0 ? (
 					<Link to="/cart" className="ir-al-carrito link">
 						Ir al carrito
 					</Link>
