@@ -5,13 +5,10 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-.logOut {
-	background-color: #000;
-}
 
 body {
 	font-family: "Poppins", sans-serif;
-	background-color: rgb(124, 124, 124);
+	background-color: rgb(255, 255, 255);
 }
 
 header {
@@ -25,34 +22,99 @@ header {
 	padding: 10px;
 }
 
-nav {
-	display: flex;
-	justify-content: space-between;
-	font-size: 20px;
-	font-weight: 200;
-	background-color: #ffffff;
-	padding: 20px;
-}
-
 .navbar {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	font-size: 20px;
 	font-weight: 200;
-	background-color: #ffffff;
-	padding: 20px;
+	padding: 20px 40px;
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	border-radius: 0 0 12px 12px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
-.titulos {
-	font-family: "Roboto", sans-serif;
-	font-size: 20px;
+/* NAVLINK Glass y sombra interior */
+.nav-link {
+	position: relative;
+	padding: 8px 16px;
+	margin-left: 20px;
+	color: white;
+	text-decoration: none;
+	
+	border-radius: 20px;
+	transition: all 0.3s ease;
 }
 
+/* Subrayado animado opcional */
+.nav-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0%;
+	height: 2px;
+	font-width: 700;
+	background-color: white;
+	transition: width 0.3s ease-in-out;
+}
+
+/* Hover: Efecto vidrio + sombra interior */
+.nav-link:hover {
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	color: rgb(200, 200, 200);
+	font-width: 700;
+	box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.2),
+		inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Active: Presionado (más profundo) */
+.nav-link:active {
+	font-width: 700;
+	transform: scale(0.97);
+	box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+		inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Ruta activa (resaltado) */
+.nav-link.active {
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(6px);
+	font-width: 700;
+	color: #ffffff;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4),
+		inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Links generales */
+.link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.link:hover {
+	text-decoration: none;
+}
+
+/* Logo */
 .logo {
 	display: flex;
 	justify-content: space-between;
 	font-weight: 300;
 	font-family: 30px;
+}
+
+.titulos {
+	font-family: "Roboto", sans-serif;
+	font-size: 20px;
 }
 
 nav ul {
@@ -61,7 +123,6 @@ nav ul {
 	justify-content: space-evenly;
 	width: 80%;
 	height: 100%;
-	background-color: rgb(255, 255, 255);
 	margin-bottom: 0;
 }
 
@@ -70,23 +131,20 @@ nav ul li {
 }
 
 nav ul li a {
-	color: #000000;
+	color: white;
 	text-decoration: none;
 	margin-left: 31px;
+	transition: color 0.3s ease;
 }
 
 .cart-widget {
 	display: flex;
 	align-items: center;
+	gap: 10px;
 }
 
-.link {
-	text-decoration: none; /* Elimina el subrayado */
-	color: inherit; /* Usa el color del texto del contenedor */
-}
-
-.link:hover {
-	text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
+.logOut {
+	background-color: #000;
 }
 
 .cerrar-sesion {
@@ -94,12 +152,8 @@ nav ul li a {
 	color: #ffffff;
 }
 
-/* Estilos del icono del menú hamburguesa */
 .hamburger-menu {
 	display: none;
-	cursor: pointer;
-	flex-direction: column;
-	gap: 4px;
 	cursor: pointer;
 	flex-direction: column;
 	gap: 4px;
@@ -113,14 +167,13 @@ nav ul li a {
 	background-color: black;
 	border-radius: 5px;
 }
-.cart-widget {
-	display: flex;
-	gap: 10px;
-}
+
 .inicio-sesion-movil {
 	display: none;
 }
-/* Para pantallas pequeñas (móviles) */
+
+/* ===== MEDIA QUERIES ===== */
+
 @media (max-width: 768px) {
 	nav {
 		position: relative;
@@ -130,15 +183,14 @@ nav ul li a {
 	nav ul {
 		display: none;
 		position: absolute;
-		top: 60px; /* Ajusta según el tamaño de tu header */
+		top: 60px;
 		left: 0;
 		width: 100%;
 		background-color: #fff;
 		flex-direction: column;
-		margin-top: 0;
 		padding: 10px 0;
 		border-top: 1px solid #000;
-		transition: height 0.5s ease, opacity 0.5s ease; /* Animar altura y opacidad */
+		transition: height 0.5s ease, opacity 0.5s ease;
 	}
 
 	nav.active ul {
@@ -155,7 +207,7 @@ nav ul li a {
 	}
 
 	.hamburger-menu {
-		display: flex; /* Solo visible en pantallas pequeñas */
+		display: flex;
 	}
 
 	nav ul li {
@@ -170,11 +222,11 @@ nav ul li a {
 	}
 }
 
-/* Para pantallas medianas (tablets y dispositivos de tamaño medio) */
 @media (max-width: 1024px) {
 	.inicio-sesion-movil {
 		display: block;
 	}
+
 	nav {
 		font-size: 18px;
 	}
@@ -188,9 +240,11 @@ nav ul li a {
 		flex-direction: row;
 		width: 80%;
 	}
+
 	.inicio-sesion {
 		display: none;
 	}
+
 	nav ul li {
 		border-left: #000000 1px solid;
 		margin-left: 20px;

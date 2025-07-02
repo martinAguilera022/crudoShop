@@ -57,23 +57,23 @@ const NavBar = () => {
 				</Link>
 			</div>
 			<ul className="nav-links">
-				<NavLink to={"/category/ropa femenina"} className="link">
+				<NavLink to={"/category/ropa femenina"} className={({ isActive }) => `link nav-link ${isActive ? "active" : ""}`}>
 					Ropa Mujer
 				</NavLink>
-				<NavLink to={"/category/Ropa de hombre"} className="link">
+				<NavLink to={"/category/Ropa de hombre"} className={({ isActive }) => `link nav-link ${isActive ? "active" : ""}`}>
 					Ropa Hombre
 				</NavLink>
-				<NavLink to={"/category/Electrónica"} className="link">
+				<NavLink to={"/category/Electrónica"} className={({ isActive }) => `link nav-link ${isActive ? "active" : ""}`}>
 					Electrónica
 				</NavLink>
-				<NavLink to={"/category/Joyería"} className="link">
+				<NavLink to={"/category/Joyería"} className={({ isActive }) => `link nav-link ${isActive ? "active" : ""}`}>
 					Joyería
 				</NavLink>
-				<NavLink to={"/category/Articulo"} className="link">
+				<NavLink to={"/category/Articulo"} className={({ isActive }) => `link nav-link ${isActive ? "active" : ""}`}>
 					Articulos
 				</NavLink>
 				{isAdmin && (
-					<Link to="/admin" className="link">
+					<Link to="/admin" className="link nav-link">
 						Gestion
 					</Link>
 				)}

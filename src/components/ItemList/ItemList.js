@@ -1,9 +1,12 @@
 import "./ItemListContainer.css";
 import Item from "../Item/Item";
-
+import Carousel from "../Carrousel/Carrousel";
 const ItemList = ({ productos }) => {
+	const banners = ["/50OFF.png", "/BannerCrudo.png","/CrudoShopBanner.png"];
 	return (
 		<div>
+			<Carousel images={banners} autoPlay={true} delay={4000} />
+
 			{productos.length > 0 ? (
 				<div className="productos-container">
 					{productos.map((producto) => {
@@ -28,7 +31,6 @@ const ItemList = ({ productos }) => {
 				</div>
 			) : (
 				<p className="loading-text">Cargando productos...</p>
-
 			)}
 		</div>
 	);
