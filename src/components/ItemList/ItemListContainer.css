@@ -104,9 +104,9 @@ article button:hover {
 	.productos-container {
 		grid-template-columns: repeat(
 			auto-fit,
-			minmax(150px, 1fr)
+			minmax(190px, 1fr)
 		); /* Más columnas para pantallas muy pequeñas */
-		gap: 10px;
+		gap: 0;
 	}
 	.item-detail-container {
 		flex-direction: column;
