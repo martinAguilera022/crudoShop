@@ -45,3 +45,9 @@
 .carousel-btn.next {
 	right: 20px;
 }
+
+@media(max-width:768px){
+	.carousel{
+		height:auto;
+	}
+}
