@@ -135,6 +135,27 @@ const uploadToCloudinary = async (file) => {
     });
   };
 
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
+
+  return date.toLocaleDateString("es-AR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+};
+
+const formatTime = (timestamp) => {
+  const date = new Date(timestamp);
+
+  return date.toLocaleTimeString("es-AR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
+
   // ✅ AHORA se sube la imagen en este paso, no al seleccionarla
   const handleSubmitItem = async () => {
   if (title && price && stock && description && category && image) {
@@ -314,40 +335,101 @@ const uploadToCloudinary = async (file) => {
             </div>
             {ordersList && ordersList.length > 0 ? (
               ordersList.map((order) => (
-                <div className="order-card" key={order.id}>
-                  <h2>Comprador: {order.buyer.name}</h2>
-                  <p><strong>Estado:</strong> {order.estate}</p>
-                  <p><strong>Teléfono:</strong> {order.buyer.phone}</p>
-                  <p><strong>Email:</strong> {order.buyer.email}</p>
-                  <p><strong>Fecha:</strong> {new Date(order.date.seconds * 1000).toLocaleString()}</p>
-                  <div className="order-items">
-                    <h3>Productos:</h3>
-                    {order.items.map((product, index) => (
-                      <div key={index} className="order-item">
-                        <div className="product-img"><img src={product.image} alt={product.title} /></div>
-                        <div className="product-details">
-                          <p><strong>Cantidad:</strong> {product.quantity}</p>
-                          <p><strong>Producto:</strong> {product.title}</p>
-                          <p><strong>Precio:</strong> ${product.price}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p><strong>Total:</strong> {order.total}</p>
-                  <button
-                    className={`entregado-btn ${disabledOrders[order.id] ? "disabled" : ""}`}
-                    onClick={() => handleEntregado(order.id)}
-                    disabled={disabledOrders[order.id]}
-                  >
-                    {disabledOrders[order.id] ? "Entregado" : "Marcar Entregado"}
-                  </button>
-                  <button className="delete-btn" onClick={() => handleOrdenEliminado(order.id)}>Eliminar</button>
-                </div>
-              ))
-            ) : (
-              <p>No hay órdenes disponibles</p>
+              <div className="order-card" key={order.id}>
+          
+          {/* HEADER */}
+        
+        <div className="order-header">
+  <div className="order-user">
+    <h2>{order.buyer.name}</h2>
+
+    <span className={`status ${order.estate}`}>
+      {order.estate}
+    </span>
+  </div>
+
+  <div className="order-meta">
+    <span className="date">
+      {formatDate(order.date.seconds * 1000)} ·{" "}
+      {formatTime(order.date.seconds * 1000)}
+    </span>
+
+    <span className="total">
+      {order.total.toLocaleString("es-AR")}
+    </span>
+  </div>
+</div>
+
+          {/* INFO ENVÍO */}
+          <div className="order-info">
+            <div>
+              <span>Dirección</span>
+              <p>{order.buyer.address}</p>
+            </div>
+
+            <div>
+              <span>Ciudad</span>
+              <p>{order.buyer.city}</p>
+            </div>
+
+            <div>
+              <span>Código postal</span>
+              <p>{order.buyer.postalCode}</p>
+            </div>
+
+            <div>
+              <span>Contacto</span>
+              <p>{order.buyer.phone}</p>
+              <p>{order.buyer.email}</p>
+            </div>
+
+            {order.buyer.notes && (
+              <div>
+                <span>Notas</span>
+                <p>{order.buyer.notes}</p>
+              </div>
             )}
           </div>
+
+          {/* ITEMS */}
+          <div className="order-items">
+            {order.items.map((product, index) => (
+              <div key={index} className="order-item">
+                <img className="item-image" src={product.image} alt={product.title} />
+
+                <div className="item-info">
+                  <p className="title">{product.title}</p>
+                  <p className="qty">Cantidad: {product.quantity}</p>
+                  <p className="price">{product.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ACTIONS */}
+          <div className="order-actions">
+            <button
+              className={`btn-success ${disabledOrders[order.id] ? "disabled" : ""}`}
+              onClick={() => handleEntregado(order.id)}
+              disabled={disabledOrders[order.id]}
+            >
+              {disabledOrders[order.id] ? "Entregado" : "Marcar como entregado"}
+            </button>
+
+            <button
+              className="btn-danger"
+              onClick={() => handleOrdenEliminado(order.id)}
+            >
+              Eliminar
+            </button>
+          </div>
+
+        </div>
+                      ))
+                    ) : (
+                      <p>No hay órdenes disponibles</p>
+                    )}
+                  </div>
         </>
       ) : (
         <p>No tienes permisos para ver esta sección.</p>
