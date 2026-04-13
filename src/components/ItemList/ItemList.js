@@ -43,7 +43,8 @@ const ItemList = ({ productos, loading }) => {
 				<>
 					<Carousel images={banners} autoPlay={true} delay={4000} />
 					<CategoryGrid />
-					<MostPopular />
+					
+					<MostPopular productos={productos} />
 				</>
 			)}
 
@@ -52,18 +53,13 @@ const ItemList = ({ productos, loading }) => {
 			</h2>
 
 			{/* 🔥 SIN FLICKER */}
+			
 			{loading ? (
-				<motion.div
-					className="productos-container"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-				>
-					{Array.from({ length: 8 }).map((_, i) => (
-						<div key={i} className="grid-item">
-							<SkeletonItem />
-						</div>
+				<div className="productos-container">
+					{[...Array(6)].map((_, i) => (
+						<SkeletonItem key={i} />
 					))}
-				</motion.div>
+				</div>
 			) : (
 				<motion.div
 					className="productos-container"

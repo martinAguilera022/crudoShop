@@ -1,30 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useFirebase from "../../config/useFireBase";
+
 import "./MostPopular.css";
 
-const MostPopular = () => {
-  const { itemsList, getItemsList } = useFirebase();
+
+const MostPopular = ({ productos }) => {
   const [popular, setPopular] = useState([]);
 
-useEffect(() => {
-	const fetchData = async () => {
-		await getItemsList();
-	};
-
-	fetchData();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
   useEffect(() => {
-    if (itemsList.length > 0) {
-      const sorted = [...itemsList]
+    if (productos.length > 0) {
+      const sorted = [...productos]
         .sort((a, b) => (b.vecesVendido ?? 0) - (a.vecesVendido ?? 0))
         .slice(0, 6);
 
       setPopular(sorted);
     }
-  }, [itemsList]);
-
+  }, [productos]);
   return (
     <section className="popular">
       <h2>Tendencias</h2>

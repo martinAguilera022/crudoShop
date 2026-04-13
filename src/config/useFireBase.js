@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useCallback } from "react";
 import { db } from "./firebase";
 import {
 	getDoc,
@@ -57,13 +57,13 @@ export const useFirebase = () => {
 				}));
 
 				setItemsList(items);
-				return items; // 🔥 CLAVE
+				return items; // 🔥 ESTO FALTABA
 			} else {
 				setItemsList([]);
-				return [];
+				return []; // 🔥 IMPORTANTE
 			}
 		} catch (error) {
-			console.error("Error al obtener los productos:", error);
+			console.error("Error:", error);
 			return [];
 		}
 	};
