@@ -10,10 +10,10 @@ const ItemListContainer = () => {
 
 	const [productos, setProductos] = useState([]);
 	const [loading, setLoading] = useState(true);
-
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		setLoading(true);
-		setProductos([]); // 🔥 evita productos viejos
+		setProductos([]);
 
 		const fetchData = async () => {
 			let data;
@@ -30,7 +30,6 @@ const ItemListContainer = () => {
 
 		fetchData();
 	}, [categoryId]);
-
 	return <ItemList productos={productos} loading={loading} />;
 };
 
