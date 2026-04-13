@@ -1,11 +1,11 @@
 .carousel {
 	position: relative;
 	width: 100%;
-	max-width: 1253px;
-	height: 480px;
+	max-width: ;
+	height: 520px;
 	overflow: hidden;
-	margin: 1.25rem auto;
-	border-radius: 10px;
+	
+	
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -49,6 +49,13 @@
 @media(max-width:768px){
 	.carousel{
 		margin-top:0;
-		height:auto;
+		height: 17.5rem;
 	}
+	.carousel img{
+	 object-fit: cover;
+	}
+	.carousel-btn{
+		display:none;
+	}
+
 }

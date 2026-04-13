@@ -12,17 +12,16 @@ import Checkout from "./components/Checkout/Checkout";
 import Cart from "./components/Cart/Cart";
 import CargarProductos from "./components/CargaProductos/CargarProductos";
 import AuthForm from "./components/AuthForm/AuthForm";
-
+import Search from "./components/Search/Search";
 function App() {
 	return (
 		<BrowserRouter>
 			<CartProvider>
 				<Routes>
 					<Route path="/" element={<Layout />}>
-						
 						<Route index element={<ItemListContainer />} />
 						<Route path="/auth" element={<AuthForm />} />
-
+						<Route path="/search" element={<Search />} />
 						<Route
 							path="/category/:categoryId"
 							element={<ItemListContainer />}

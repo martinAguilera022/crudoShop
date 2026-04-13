@@ -48,13 +48,13 @@ const ItemDetail = ({
 
 	return (
 		<div className="item-detail-container">
+			{offerPercentage > 0 && <p className="offer">-{offerPercentage}%</p>}
+			{stock === 0 && <p className="sin-stock-detail">SIN STOCK</p>}
 			<div className="image-container">
 				<img src={image} alt={description} className="item-image" />
 			</div>
 
 			<div className="detail-content">
-				{offerPercentage > 0 && <p className="offer">-{offerPercentage}%</p>}
-
 				<h2 className="item-title">{title}</h2>
 				<p className="item-category">{category}</p>
 				<p className="item-description">{description}</p>

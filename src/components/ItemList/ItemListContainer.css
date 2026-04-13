@@ -12,11 +12,60 @@
 .link {
 	text-decoration: none; /* Elimina el subrayado */
 }
+.productos-title {
+	text-align: center;
+	font-size: 26px;
+	margin-bottom: 20px;
+	font-weight: 600;
+	align-items: center;
+	display: inline-block;
+	margin: 10px auto 10px;
+	width: 100%;
+}
 
+.productos-title::after {
+	content: "";
+	display: block;
+	width: 20%;
+	height: 3px;
+	background-color: #302f2feb;
+	margin: 8px auto 0;
+	border-radius: 10px;
+}
 .link:hover {
 	text-decoration: none; /* Asegúrate de que no aparezca subrayado al pasar el mouse */
 }
+/* 🔥 Contenedor horizontal */
+.productos-grid {
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+}
 
+/* Oculta scrollbar (opcional) */
+.productos-grid::-webkit-scrollbar {
+	height: 8px;
+}
+
+.productos-grid::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 10px;
+}
+
+/* Cada item */
+.productos-grid > * {
+	min-width: 220px; /* CLAVE para horizontal */
+	flex-shrink: 0;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover pro */
+.productos-grid > *:hover {
+	transform: scale(1.05);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 article {
 	background-color: #fcfcfc;
 	border-radius: 8px;
@@ -78,7 +127,31 @@ article button:hover {
 }
 
 /* Media Queries para diferentes tamaños de pantallas */
+.productos-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 25px;
+	padding: 40px 20px;
+}
 
+.grid-item {
+	grid-column: span 1;
+	grid-row: span 1;
+}
+
+.grid-banner {
+	grid-column: span 2;
+	grid-row: span 2;
+	position: relative;
+	overflow: hidden;
+	border-radius: 12px;
+}
+
+.grid-banner img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 /* Para pantallas de tabletas y dispositivos pequeños */
 @media (max-width: 1024px) {
 	.productos-container {
@@ -101,18 +174,20 @@ article button:hover {
 
 /* Para pantallas pequeñas (móviles) */
 @media (max-width: 600px) {
+	.ItemDetailContainer {
+		margin: 7px auto;
+	}
 	.productos-container {
 		grid-template-columns: repeat(
 			auto-fit,
-			minmax(190px, 1fr)
+			minmax(170px, 1fr)
 		); /* Más columnas para pantallas muy pequeñas */
-		gap: 0;
+		gap: 1;
 	}
 	.item-detail-container {
 		flex-direction: column;
 	}
 	.item-image {
-		width: 52%;
 		height: auto;
 		border-radius: 8px;
 		object-fit: cover;

@@ -1,38 +1,96 @@
 import "./ItemListContainer.css";
 import Item from "../Item/Item";
 import Carousel from "../Carrousel/Carrousel";
-const ItemList = ({ productos }) => {
-	const banners = ["/50OFF.png", "/BannerCrudo.png","/CrudoShopBanner.png"];
-	return (
-		<div>
-			<Carousel images={banners} autoPlay={true} delay={4000} />
+import CategoryGrid from "../CategoryGrid/CategoryGrid";
+import MostPopular from "../MostPopular/MostPopular";
+import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import SkeletonItem from "../SkeletonItem/SkeletonItem"; 
 
-			{productos.length > 0 ? (
-				<div className="productos-container">
+const ItemList = ({ productos, loading }) => {
+	const { categoryId } = useParams();
+
+	const banners = [
+		"/Modacollage.png",
+		"/Coleccióndemodaurbanacruda.png",
+		"/Estilo urbano y energía cruda.png",
+		"/Nueva colección urbana cruda.png",
+	];
+
+	const container = {
+		hidden: {},
+		show: {
+			transition: {
+				staggerChildren: 0.08,
+			},
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0, y: 20, scale: 0.95 },
+		show: { opacity: 1, y: 0, scale: 1 },
+	};
+
+	return (
+		<motion.div
+			key={categoryId || "home"}
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.4 }}
+		>
+			{/* 🔥 SOLO HOME */}
+			{!categoryId && (
+				<>
+					<Carousel images={banners} autoPlay={true} delay={4000} />
+					<CategoryGrid />
+					<MostPopular />
+				</>
+			)}
+
+			<h2 className="productos-title">
+				{categoryId ? categoryId.toUpperCase() : "CRUDO"}
+			</h2>
+
+			{/* 🔥 SIN FLICKER */}
+			{loading ? (
+				<motion.div
+					className="productos-container"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+				>
+					{Array.from({ length: 8 }).map((_, i) => (
+						<div key={i} className="grid-item">
+							<SkeletonItem />
+						</div>
+					))}
+				</motion.div>
+			) : (
+				<motion.div
+					className="productos-container"
+					variants={container}
+					initial="hidden"
+					animate="show"
+				>
 					{productos.map((producto) => {
 						const formattedPrice = producto.price.toLocaleString("es-AR", {
 							style: "currency",
 							currency: "ARS",
 						});
+
 						return (
-							<Item
+							<motion.div
 								key={producto.id}
-								id={producto.id}
-								image={producto.image}
-								title={producto.title}
-								price={formattedPrice}
-								offerPercentage={producto.offerPercentage}
-								category={producto.category}
-								description={producto.description}
-								stock={producto.stock}
-							/>
+								className="grid-item"
+								variants={item}
+								whileHover={{ scale: 1.05 }} // 🔥 hover pro
+							>
+								<Item {...producto} price={formattedPrice} />
+							</motion.div>
 						);
 					})}
-				</div>
-			) : (
-				<p className="loading-text">Cargando productos...</p>
+				</motion.div>
 			)}
-		</div>
+		</motion.div>
 	);
 };
 

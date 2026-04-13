@@ -1,147 +1,131 @@
-.ItemDetailContainer {
+.popular-card {
+	min-width: 220px;
+	max-width: 220px;
+	height: 320px; /* 🔥 altura fija total */
+
+	flex: 0 0 auto;
+
+	background: #fff;
+
+	overflow: hidden;
+
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	max-width: 300px;
-	margin: 20px auto;
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	background-color: #fff;
-	overflow: hidden;
+}
+.offer-badge {
+	position: absolute;
+	top: 12px;
+	left: -5px;
+	background: #ff0000;
+	color: #fff;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 6px 12px;
+	border-radius: 0 20px 20px 0;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popular-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .image-wrapper {
-	position: relative;
 	width: 100%;
-	height: 400px;
-	overflow: hidden;
-	border-radius: 10px;
+	height: 180px; /* 🔥 SIEMPRE igual */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: #f5f5f5;
 }
 
 .image-wrapper img {
 	width: 100%;
-
-	object-fit: cover;
-	display: block;
+	height: 100%;
+	object-fit: contain; /* 🔥 no deforma */
+	padding: 10px;
 }
 
-/* Información superpuesta */
-.information-item {
+/* ===== BADGE ===== */
+.badge {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	padding: 15px;
-	box-sizing: border-box;
+	top: 10px;
+	left: 10px;
+	background: #e60023;
+	color: #fff;
+	font-size: 12px;
+	padding: 4px 8px;
+}
+
+/* ===== INFO ===== */
+.info {
+	flex: 1; /* 🔥 ocupa lo que sobra */
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
-	background: rgb(0 0 0 / 36%);
-	backdrop-filter: blur(2px);
-	-webkit-backdrop-filter: blur(10px);
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
-	color: white;
+	justify-content: space-between; /* 🔥 separa contenido */
+	padding: 12px;
+}
+/* título */
+.info h3 {
+	font-size: 15px;
+	font-weight: 500;
 }
 
-/* Título */
-.information-item h2 {
-	font-size: 16px;
-	margin: 0;
-	color: white;
-}
-
-/* Categoría */
-.category {
-	background-color: rgba(255, 255, 255, 0.2);
-	color: #fff;
-	padding: 4px 10px;
-	border-radius: 12px;
+/* ventas */
+.ventas {
 	font-size: 12px;
-	width: fit-content;
+	color: #777;
 }
 
-/* Precio */
+/* precios */
+.price {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+}
+
 .price-old {
 	text-decoration: line-through;
-	color: #ccc;
-	font-size: 14px;
+	color: #999;
+	font-size: 13px;
 }
 
 .price-new {
-	font-weight: bold;
-	color: #ff7676;
+	font-weight: 600;
 	font-size: 16px;
 }
 
 .price-regular {
-	font-weight: bold;
-	color: white;
 	font-size: 16px;
-}
-
-.precio-button {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 10px;
-}
-
-/* Botón Ver */
-.ver-button {
-	color: black;
-	background-color: white;
-	padding: 6px 12px;
-	border-radius: 20px;
-	text-decoration: none;
-	font-size: 14px;
 	font-weight: 600;
-	transition: background-color 0.3s ease;
 }
 
-.ver-button:hover {
-	background-color: #ddd;
+/* botón */
+.ver-btn {
+	margin-top: 10px;
+	padding: 8px;
+	border-radius: 8px;
+	background: #000;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.2s;
 }
 
-/* Etiquetas */
-.offer-overlay,
-.sin-stock-overlay {
-	position: absolute;
-	z-index: 10;
-	padding: 6px 12px;
-	border-radius: 6px;
-	font-size: 14px;
-	font-weight: bold;
-	color: white;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+.ver-btn {
+	margin-top: auto; /* 🔥 siempre abajo */
+}
+.ver-btn:hover {
+	background: #333;
 }
 
-.offer-overlay {
-	top: 10px;
-	right: 10px;
-	background-color: #ff3b3b;
-	animation: pulse 1.8s infinite;
+
+.card-price .old {
+	font-size: 12px;
+	color: #aaa;
+	text-decoration: line-through;
 }
 
-.sin-stock-overlay {
-	top: 10px;
-	left: 10px;
-	background-color: rgba(61, 61, 61, 0.7);
-}
-
-/* Animación */
-@keyframes pulse {
-	0% {
-		transform: scale(1);
-		opacity: 1;
-	}
-	50% {
-		transform: scale(1.05);
-		opacity: 0.9;
-	}
-	100% {
-		transform: scale(1);
-		opacity: 1;
-	}
-}

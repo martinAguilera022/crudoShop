@@ -37,10 +37,9 @@ const Checkout = () => {
 			const batch = writeBatch(db);
 			const outOfStock = [];
 			const ids = cart.map((prod) => String(prod.id));
-
 			const productsRef = collection(db, "items");
 			const productsAddedFromFirestore = await getDocs(
-				query(productsRef, where(documentId(), "in", ids))
+				query(productsRef, where(documentId(), "in", ids)),
 			);
 			const { docs } = productsAddedFromFirestore;
 
@@ -52,13 +51,16 @@ const Checkout = () => {
 				const prodQuantity = productAddedToCart?.quantity;
 
 				if (stockDb >= prodQuantity) {
-					batch.update(doc.ref, { stock: stockDb - prodQuantity });
+					batch.update(doc.ref, {
+						stock: stockDb - prodQuantity,
+						vecesVendido: (dataDoc.vecesVendido || 0) + prodQuantity,
+					});
 					console.log(
 						"Stock actualizado para",
 						doc.id,
 						":",
-						stockDb - prodQuantity
-					); // Verificar la actualización
+						stockDb - prodQuantity,
+					);
 				} else {
 					outOfStock.push({ id: doc.id, ...dataDoc });
 					Swal.fire({

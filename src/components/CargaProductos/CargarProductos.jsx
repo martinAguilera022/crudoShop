@@ -15,6 +15,7 @@ function CargarProductos() {
     getItemsList,
     getOrdersList,
     updatedItem,
+    
   } = useFirebase();
 
   // Estados para el popup de edición
@@ -25,7 +26,7 @@ function CargarProductos() {
   const [updatedCategoria, setUpdatedCategoria] = useState("");
   const [updatedImage, setUpdatedImage] = useState("");
   const [updatedOfferPercentage, setUpdatedOfferPercentage] = useState(0);
-
+  const [updateVecesVendido, setUpdatedVecesVendido] = useState(0);
   // Otros estados
   const [selectedItem, setSelectedItem] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -112,6 +113,7 @@ const uploadToCloudinary = async (file) => {
       offerPercentage: updatedOfferPercentage,
       image: updatedImage,
       stock: updatedStock,
+      vecesVendido: updateVecesVendido,
     })
       .then(() => {
         getItemsList();
@@ -145,6 +147,7 @@ const uploadToCloudinary = async (file) => {
         category,
         image, // ← ahora es una URL válida
         offerPercentage,
+        vecesVendido: 0,
       });
 
       await getItemsList();
@@ -199,12 +202,12 @@ const uploadToCloudinary = async (file) => {
             <input placeholder="Descripción" onChange={(e) => setNewItemDescripcion(e.target.value)} />
             <select className="select" id="categoria" onChange={(e) => setNewItemCategoria(e.target.value)}>
               <option value={""}>Categoría</option>
-              <option value="ropa femenina">Ropa Femenina</option>
-              <option value="Ropa de hombre">Ropa de Hombre</option>
-              <option value="Electrónica">Electrónica</option>
-              <option value="Joyería">Joyería</option>
-              <option value="Zapatilla">Zapatilla</option>
-              <option value="Articulo">Articulo</option>
+              <option value="buzos">Buzos</option>
+              <option value="remeras">Remeras</option>
+              <option value="pantalones">Pantalones</option>
+              <option value="accesorios">Accesorios</option>
+              <option value="zapatillas">Zapatilla</option>
+              
             </select>
             <input placeholder="Stock" type="number" onChange={(e) => setNewItemStock(Number(e.target.value))} />
 

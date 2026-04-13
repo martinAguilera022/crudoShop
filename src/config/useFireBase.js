@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { query, where } from "firebase/firestore"; // 🔥 agregar
 
 // Colecciones de Firebase
 const itemsCollectionRef = collection(db, "items");
@@ -22,20 +23,48 @@ export const useFirebase = () => {
 	const [ordersList, setOrdersList] = useState([]);
 	const [disabledOrders, setDisabledOrders] = useState([]);
 
-	const getItemsList = async () => {
+	const getItemsByCategory = async (categoryId) => {
 		try {
-			const data = await getDocs(itemsCollectionRef);
+			const q = query(itemsCollectionRef, where("category", "==", categoryId));
+
+			const data = await getDocs(q);
+
 			if (!data.empty) {
 				const items = data.docs.map((doc) => ({
 					id: doc.id,
 					...doc.data(),
 				}));
-				setItemsList(items); // Usa el estado directamente
+
+				setItemsList(items);
+				return items;
 			} else {
-				setItemsList([]); // Maneja el caso vacío
+				setItemsList([]);
+				return [];
+			}
+		} catch (error) {
+			console.error("Error al filtrar por categoría:", error);
+			return [];
+		}
+	};
+	const getItemsList = async () => {
+		try {
+			const data = await getDocs(itemsCollectionRef);
+
+			if (!data.empty) {
+				const items = data.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				}));
+
+				setItemsList(items);
+				return items; // 🔥 CLAVE
+			} else {
+				setItemsList([]);
+				return [];
 			}
 		} catch (error) {
 			console.error("Error al obtener los productos:", error);
+			return [];
 		}
 	};
 
@@ -83,6 +112,7 @@ export const useFirebase = () => {
 		category,
 		image,
 		offerPercentage = 0,
+		vecesVendido = 0,
 	}) => {
 		await addDoc(itemsCollectionRef, {
 			title,
@@ -92,6 +122,7 @@ export const useFirebase = () => {
 			category,
 			image,
 			offerPercentage,
+			vecesVendido,
 		});
 
 		getItemsList();
@@ -142,7 +173,7 @@ export const useFirebase = () => {
 	/** Actualizar producto */
 	const updatedItem = async (
 		id,
-		{ title, price, stock, description, category, image, offerPercentage }
+		{ title, price, stock, description, category, image, offerPercentage },
 	) => {
 		try {
 			const itemDoc = doc(db, "items", id);
@@ -206,7 +237,7 @@ export const useFirebase = () => {
 					const orderDoc = doc(db, "orders", id);
 					deleteDoc(orderDoc);
 					setOrdersList((prevOrders) =>
-						prevOrders.filter((order) => order.id !== id)
+						prevOrders.filter((order) => order.id !== id),
 					);
 
 					Swal.fire({
@@ -250,6 +281,7 @@ export const useFirebase = () => {
 		getItemsList,
 		getOrdersList, // Asegúrate de que esta línea esté presente
 		getOrdersByEstate,
+		getItemsByCategory,
 		onSubmitItem,
 		deleteItem,
 		updatedItem,
