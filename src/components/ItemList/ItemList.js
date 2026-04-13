@@ -5,7 +5,10 @@ import CategoryGrid from "../CategoryGrid/CategoryGrid";
 import MostPopular from "../MostPopular/MostPopular";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import SkeletonItem from "../SkeletonItem/SkeletonItem"; 
+import SkeletonItem from "../SkeletonItem/SkeletonItem";
+import SkeletonBanner from "../SkeletonBanner/SkeletonBanner.jsx";
+import SkeletonCategory from "../SkeletonCategory/SkeletonCategory";
+import SkeletonPopular from "../SkeletonPopular/SkeletonPopular";
 
 const ItemList = ({ productos, loading }) => {
 	const { categoryId } = useParams();
@@ -41,10 +44,19 @@ const ItemList = ({ productos, loading }) => {
 			{/* 🔥 SOLO HOME */}
 			{!categoryId && (
 				<>
-					<Carousel images={banners} autoPlay={true} delay={4000} />
-					<CategoryGrid />
-					
-					<MostPopular productos={productos} />
+					{loading ? (
+						<>
+							<SkeletonBanner />
+							<SkeletonCategory />
+							<SkeletonPopular />
+						</>
+					) : (
+						<>
+							<Carousel images={banners} autoPlay delay={4000} />
+							<CategoryGrid />
+							<MostPopular productos={productos} />
+						</>
+					)}
 				</>
 			)}
 
@@ -53,7 +65,7 @@ const ItemList = ({ productos, loading }) => {
 			</h2>
 
 			{/* 🔥 SIN FLICKER */}
-			
+
 			{loading ? (
 				<div className="productos-container">
 					{[...Array(6)].map((_, i) => (

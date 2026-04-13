@@ -166,14 +166,24 @@ const uploadToCloudinary = async (file) => {
     <div className="cargar-productos-container">
       {isAdmin ? (
         <>
-          <div className="mobile-toggle">
-            <button onClick={() => setView(view === "productos" ? "ordenes" : "productos")}>
-              {view === "productos" ? "Ver Órdenes" : "Cargar Datos"}
-            </button>
-          </div>
+  
 
           <div className={`form-container productos ${view === "ordenes" ? "hidden-mobile" : ""}`}>
-            <h1>Cargar Productos</h1>
+       <div className="cargar-productos-header">
+          <h1>Cargar Productos</h1>
+              <div className="mobile-toggle">
+  <button
+    onClick={() =>
+      setView((prev) =>
+        prev === "productos" ? "ordenes" : "productos"
+      )
+    }
+  >
+    {view === "productos" ? "Ver Órdenes" : "Ver Productos"}
+  </button>
+</div>
+       </div>
+          
 
             {/* ✅ Input para seleccionar la imagen */}
             <input
@@ -262,12 +272,12 @@ const uploadToCloudinary = async (file) => {
                   <input placeholder="Descripción" value={updatedDescripcion} onChange={(e) => setUpdatedDescripcion(e.target.value)} />
                   <select className="select" onChange={(e) => setUpdatedCategoria(e.target.value)} value={updatedCategoria}>
                     <option value="">Categoría</option>
-                    <option value="ropa femenina">Ropa Femenina</option>
-                    <option value="Ropa de hombre">Ropa de Hombre</option>
-                    <option value="Electrónica">Electrónica</option>
-                    <option value="Joyería">Joyería</option>
+                    <option value="buzos">Buzos</option>
+                    <option value="remeras">Remera</option>
+                    <option value="pantalones">Pantalones</option>
+                    <option value="accesorios">Accesorios</option>
                     <option value="Zapatilla">Zapatilla</option>
-                    <option value="Articulo">Articulo</option>
+                    
                   </select>
                   <label>Oferta  
                     <input type="number" placeholder="Porcentaje Descuento" value={updatedOfferPercentage} onChange={(e) => setUpdatedOfferPercentage(Number(e.target.value))} />
@@ -282,7 +292,21 @@ const uploadToCloudinary = async (file) => {
 
           {/* Lista de Órdenes */}
           <div className={`orders-list ordenes ${view === "productos" ? "hidden-mobile" : ""}`}>
-            <h1>Órdenes</h1>
+            <div className="orders-header">
+              <h1>Órdenes</h1>
+              <div className="mobile-toggle">
+  <button
+    onClick={() =>
+      setView((prev) =>
+        prev === "productos" ? "ordenes" : "productos"
+      )
+    }
+  >
+    {view === "productos" ? "Ver Órdenes" : "Ver Productos"}
+  </button>
+</div>
+            </div>
+            
             <div className="order-filters">
               <button onClick={() => getOrdersList()}>Todas</button>
               <button onClick={() => getOrdersByEstate("Entregado")}>Entregadas</button>
