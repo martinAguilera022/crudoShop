@@ -1,69 +1,85 @@
-
 import { useState, useEffect } from "react";
 import { auth } from "../../config/firebase";
-import { useNavigate } from "react-router-dom"; // Cambiar de useHistory a useNavigate
-import AuthForm from "../AuthForm/AuthForm";
-import {handleGoogleSignIn,handleLogout,handleRegister} from "../Auth/Auth";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ onConfirm }) => {
-	
-	const [user, setUser] = useState(null); // Mantener el estado de usuario
-	const navigate = useNavigate(); // Usamos el hook navigate
+	const [address, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [postalCode, setPostalCode] = useState("");
+	const [notes, setNotes] = useState("");
+	const [user, setUser] = useState(null);
 
-	
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(setUser);
 		return () => unsubscribe();
 	}, []);
 
-	const handleConfirm = (event) => {
-		event.preventDefault();
-		if (user) {
-			let userName = user.displayName || "Anonimo"; 
-			let userEmail = user.email || ""; // y también para email y phone
-			let userPhone = user.phoneNumber || "";
-
-			const userData = { name: userName, phone: userPhone, email: userEmail };
-			console.log(userData);
-			onConfirm(userData);
-		}
-	};
-
-	const handleLogout = () => {
-		auth.signOut();
+	const handleLogout = async () => {
+		await auth.signOut();
 		navigate("/auth");
-		navigate("/checkout"); // Usamos navigate en lugar de history.push
 	};
 
-	const confirmarCompra = () => {
-		if (user) {
-			let userName = user.displayName || ""; // Usamos "" si no tiene displayName
-			let userEmail = user.email || ""; // y también para email y phone
-			let userPhone = user.phoneNumber || "";
+	const handleConfirm = () => {
+		if (!user) return;
 
-			const userData = { name: userName, phone: userPhone, email: userEmail };
-			console.log(userData);
-			onConfirm(userData);
-		}
+		onConfirm({
+			name: user.displayName || "Anonimo",
+			email: user.email || "",
+			phone: user.phoneNumber || "",
+			address,
+			city,
+			postalCode,
+			notes,
+		});
 	};
 
 	return (
-		<div >
+		<div className="checkout-card">
 			{user ? (
-				<div className="user-info Container checkout-card" >
-					<p>
-						Hola, {user.displayName || user.email}. ¿Deseas continuar la compra?
-					</p>
-					<button className="Button" type="button" onClick={confirmarCompra}>
-						Confirmar
+				<>
+					<h3>Datos de envío</h3>
+
+					<input
+						type="text"
+						placeholder="Dirección"
+						value={address}
+						onChange={(e) => setAddress(e.target.value)}
+					/>
+
+					<input
+						type="text"
+						placeholder="Ciudad"
+						value={city}
+						onChange={(e) => setCity(e.target.value)}
+					/>
+
+					<input
+						type="text"
+						placeholder="Código postal"
+						value={postalCode}
+						onChange={(e) => setPostalCode(e.target.value)}
+					/>
+
+					<textarea
+						placeholder="Notas (opcional)"
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+					/>
+
+					<hr />
+
+					<p>Hola, {user.displayName || user.email}. Confirmar compra:</p>
+
+					<button className="Button" onClick={handleConfirm}>
+						Confirmar compra
 					</button>
-					<p>Comprar con otra cuenta</p>
-					<button onClick={handleLogout}>Cerrar sesión</button>
-				</div>
+
+					<button onClick={handleLogout}>Cambiar cuenta</button>
+				</>
 			) : (
-				<form onSubmit={handleConfirm} className="Form">
-					<AuthForm />
-				</form>
+				<p>Debes iniciar sesión para continuar</p>
 			)}
 		</div>
 	);

@@ -19,15 +19,27 @@ const Checkout = () => {
 	const [orderId, setOrderId] = useState(null);
 
 	const { cart, total, clearCart } = useContext(CartContext);
-	const createOrder = async ({ name, phone, email }) => {
+	const createOrder = async ({
+		name,
+		phone,
+		email,
+		address,
+		city,
+		postalCode,
+		notes,
+	}) => {
 		setLoading(true);
 		try {
 			const objOrder = {
 				estate: "Pendiente",
 				buyer: {
-					name: name,
-					phone: phone,
-					email: email,
+					name,
+					phone,
+					email,
+					address,
+					city,
+					postalCode,
+					notes,
 				},
 				items: cart,
 				total: total(),
