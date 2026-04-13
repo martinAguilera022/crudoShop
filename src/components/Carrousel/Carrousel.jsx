@@ -11,7 +11,7 @@ const Carousel = ({ images, autoPlay = true, delay = 5000 }) => {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!autoPlay) return;
     const interval = setInterval(nextSlide, delay);

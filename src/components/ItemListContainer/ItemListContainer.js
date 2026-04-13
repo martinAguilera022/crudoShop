@@ -12,23 +12,37 @@ const ItemListContainer = () => {
 	const [loading, setLoading] = useState(true);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
+		let isMounted = true;
+
 		setLoading(true);
 		setProductos([]);
 
 		const fetchData = async () => {
-			let data;
+			try {
+				let data;
 
-			if (categoryId) {
-				data = await getItemsByCategory(categoryId);
-			} else {
-				data = await getItemsList();
+				if (categoryId) {
+					data = await getItemsByCategory(categoryId);
+				} else {
+					data = await getItemsList();
+				}
+
+				if (isMounted) {
+					setProductos(data);
+				}
+			} catch (error) {
+				console.error("Error cargando productos:", error);
+			} finally {
+				if (isMounted) setLoading(false);
 			}
-
-			setProductos(data);
-			setLoading(false);
 		};
 
 		fetchData();
+
+		return () => {
+			isMounted = false;
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [categoryId]);
 	return <ItemList productos={productos} loading={loading} />;
 };

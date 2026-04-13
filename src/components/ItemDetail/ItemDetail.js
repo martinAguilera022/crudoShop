@@ -28,10 +28,7 @@ const ItemDetail = ({
 		};
 		addItem(item, quantity);
 	};
-	const formattedPrice = price.toLocaleString("es-AR", {
-		style: "currency",
-		currency: "ARS",
-	});
+	
 	const cleanPrice = Number(String(price).replace(/[^0-9.-]+/g, ""));
 	const discount = Number(offerPercentage);
 	const discountedPrice = cleanPrice * (1 - discount / 100);

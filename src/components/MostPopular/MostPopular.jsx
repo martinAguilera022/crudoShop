@@ -6,7 +6,7 @@ import "./MostPopular.css";
 const MostPopular = () => {
   const { itemsList, getItemsList } = useFirebase();
   const [popular, setPopular] = useState([]);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     getItemsList();
   }, []);
