@@ -322,6 +322,9 @@ a {
 	.navbar {
 		padding: 10px 15px;
 	}
+	.icons {
+		height: 35%;
+	}
 	.mobile-categories {
 		display: flex;
 	}

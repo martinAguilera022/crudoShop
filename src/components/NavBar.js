@@ -73,17 +73,19 @@ const NavBar = () => {
 		return () => unsubscribe();
 	}, [auth]);
 	useEffect(() => {
-	const handleClickOutside = (e) => {
-		if (!e.target.closest(".mobile-categories-btn") &&
-		    !e.target.closest(".mobile-categories-menu")) {
-			setCategoriesOpen(false);
-		}
-	};
+		const handleClickOutside = (e) => {
+			if (
+				!e.target.closest(".mobile-categories-btn") &&
+				!e.target.closest(".mobile-categories-menu")
+			) {
+				setCategoriesOpen(false);
+			}
+		};
 
-	document.addEventListener("click", handleClickOutside);
+		document.addEventListener("click", handleClickOutside);
 
-	return () => document.removeEventListener("click", handleClickOutside);
-}, []);
+		return () => document.removeEventListener("click", handleClickOutside);
+	}, []);
 
 	return (
 		<header className="navbar">
@@ -93,7 +95,26 @@ const NavBar = () => {
 						CRUDO
 					</Link>
 				</div>
+				<div className="icons">
+					<CartWidget />
 
+					{isAdmin && (
+						<Link to="/admin" className="admin-icon">
+							<FiSettings size={20} />
+						</Link>
+					)}
+					{!auth.currentUser && (
+						<Link to="/auth">
+							<FaUser size={20} />
+						</Link>
+					)}
+
+					{auth.currentUser && (
+						<button className="logOut" onClick={handleLogout}>
+							<FiLogOut size={20} />
+						</button>
+					)}
+				</div>
 				{/* 🔍 BUSCADOR CON DROPDOWN */}
 				<div className="search-container mobile-search">
 					<div className="mobile-categories">
@@ -162,27 +183,6 @@ const NavBar = () => {
 								</Link>
 							))}
 						</div>
-					)}
-				</div>
-
-				<div className="icons">
-					<CartWidget />
-
-					{isAdmin && (
-						<Link to="/admin" className="admin-icon">
-							<FiSettings size={20} />
-						</Link>
-					)}
-					{!auth.currentUser && (
-						<Link to="/auth">
-							<FaUser size={20} />
-						</Link>
-					)}
-
-					{auth.currentUser && (
-						<button className="logOut" onClick={handleLogout}>
-							<FiLogOut size={20} />
-						</button>
 					)}
 				</div>
 			</div>
