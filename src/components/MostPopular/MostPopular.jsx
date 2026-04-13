@@ -6,11 +6,15 @@ import "./MostPopular.css";
 const MostPopular = () => {
   const { itemsList, getItemsList } = useFirebase();
   const [popular, setPopular] = useState([]);
-// eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    getItemsList();
-  }, []);
 
+useEffect(() => {
+	const fetchData = async () => {
+		await getItemsList();
+	};
+
+	fetchData();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
   useEffect(() => {
     if (itemsList.length > 0) {
       const sorted = [...itemsList]
