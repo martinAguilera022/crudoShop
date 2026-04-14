@@ -401,7 +401,7 @@ button:hover {
 	}
 
 	.order-info {
-		grid-template-columns: 1fr;
+		grid-template-columns: 2fr;
 	}
 
 	.cargar-productos-header {
@@ -413,5 +413,8 @@ button:hover {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.hidden-mobile {
+		display: none;
 	}
 }
